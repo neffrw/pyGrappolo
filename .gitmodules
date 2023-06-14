@@ -1,0 +1,3 @@
+[submodule "grappolo"]
+	path = grappolo
+	url = git@github.com:ECP-ExaGraph/grappolo.git

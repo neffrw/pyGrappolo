@@ -1,6 +1,6 @@
 [submodule "grappolo"]
 	path = grappolo
-	url = git@github.com:neffrw/grappolo.git
+	url = https://github.com/neffrw/grappolo.git
 [submodule "pybind11"]
 	path = pybind11
 	url = ../../pybind/pybind11

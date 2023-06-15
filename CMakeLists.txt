@@ -6,7 +6,7 @@ PROJECT(GRAPPOLO C CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 cmake_minimum_required(VERSION 3.8...3.18)
-find_package(pybind11 REQUIRED)
+add_subdirectory(pybind11)
 set( TARGET grappolo)
 pybind11_add_module(${TARGET} src/pyGrappolo.cpp)
 

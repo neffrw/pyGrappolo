@@ -32,18 +32,18 @@ option( OPTION_BUILD_EXAMPLES
 
 set( CMAKE_CXX_STANDARD 11 )
 
-#set(CMAKE_C_COMPILER "gcc-8")
+# set(CMAKE_C_COMPILER "gcc-8")
 #set(CMAKE_CXX_COMPILER "g++-8")
 #set(CMAKE_C_COMPILER "/share/apps/gcc/7.1/bin/gcc")
 #set(CMAKE_CXX_COMPILER "/share/apps/gcc/7.1/bin/g++")
 # unset(CMAKE_SOURCE_DIR)
 # set(CMAKE_SOURCE_DIR /grappolo)
 
-set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -fopenmp -O3 -fPIC" )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fopenmp -O3 -fPIC" )
+set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -O3 -fPIC" )
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -fPIC" )
 # set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11 -fopenmp -O0" )
 
-find_package(OpenMP)
+find_package(OpenMP REQUIRED)
 if (OPENMP_FOUND)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")

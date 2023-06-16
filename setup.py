@@ -101,6 +101,34 @@ class CMakeBuild(build_ext):
             archs = re.findall(r"-arch (\S+)", os.environ.get("ARCHFLAGS", ""))
             if archs:
                 cmake_args += ["-DCMAKE_OSX_ARCHITECTURES={}".format(";".join(archs))]
+            # Check to see if compiler is appleclang
+            if self.compiler.compiler_type == "clang":
+                print(
+                    "Compiler is clang on Apple which does not support OpenMP"
+                    ", checking for gcc/g++."
+                )
+                # Check to see if GCC exists
+                if os.path.exists("/usr/bin/gcc") and os.path.exists("/usr/bin/g++"):
+                    # Find g++ version
+                    gpp_version = subprocess.run(
+                        ["gcc", "--version"], stdout=subprocess.PIPE
+                    )
+                    # Extract version number
+                    gpp_version = (
+                        gpp_version.stdout.decode("utf-8").split("\n")[0].split(" ")[-1]
+                    )
+                    print(f"gcc {gpp_version} found on Apple, using gcc/g++.")
+                    cmake_args += ["-DCMAKE_C_COMPILER=/usr/bin/gcc"]
+                    cmake_args += ["-DCMAKE_CXX_COMPILER=/usr/bin/g++"]
+                else:
+                    # Get available compilers from show_compilers()
+
+                    raise Exception(
+                        "GCC not found on Apple, please install"
+                        "gcc/g++ or change the compiler to one that"
+                        "supports OpenMP with CC/CXX env vars. Example command: "
+                        "CC=gcc-9 CXX=g++-9 pip install ./pyGrappolo"
+                    )
 
         # Set CMAKE_BUILD_PARALLEL_LEVEL to control the parallel build level
         # across all generators.

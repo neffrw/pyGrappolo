@@ -9,6 +9,7 @@
     1. `grappolo.grappolo(args_dict)` (see test.py example)
 
 ## Troubleshooting
-- If your build is failing on MacOS due to an `ld: unsupported tapi file type '!tapi-tbd' in yaml file` error within conda, your conda-supplied `ld` may be outdated compared to the system `ld`.
-    - Please either run outside of the conda environment, or append the system's `ld` to the PATH environment variable after activating your conda environment with `export PATH=${PATH}:<path/to/system/ld>`.
-    - _Hint: the system's `ld` location can be found by executing `which ld` outside of the conda environment._
+- If your build is failing on MacOS due to an `ld: unsupported tapi file type '!tapi-tbd' in yaml file` error within conda, your conda-supplied `ld` may be outdated compared to the system `ld`. You may follow one of two solutions: (retrieved from [Seth Johnson's answer](https://stackoverflow.com/a/74629760))
+    1. Please either run outside of the conda environment, or
+    1. Append the system's `ld` to the PATH environment variable after activating your conda environment with `export PATH=${PATH}:<path/to/system/ld>`.
+        1. _Hint: the system's `ld` location can be found by executing `which ld` outside of the conda environment._

@@ -24,5 +24,5 @@ grappolo_args = {
     "replaceMap" : False,
     "edgeList" : nx.to_edgelist(Karate)
 }
-Grappolo_edgelist = grappolo.grappolo(grappolo_args)
-print(Grappolo_edgelist)
+Grappolo_clusters = grappolo.grappolo(grappolo_args)
+print(Grappolo_clusters)
